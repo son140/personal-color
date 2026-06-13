@@ -1,43 +1,45 @@
 import streamlit as st
+import random
+import time
 
-st.set_page_config(page_title="SYSTEM INTERFACE", layout="wide")
+st.set_page_config(page_title="/// SYSTEM FAILURE ///", layout="wide")
 
 st.markdown("""
 <style>
 body {
-    background: radial-gradient(circle at top, #050505, #000000);
-    color: #00ff9d;
+    background-color: #000000;
+    color: #d0d0d0;
     font-family: monospace;
 }
 
 .title {
     text-align: center;
-    font-size: 42px;
-    font-weight: 800;
-    color: #00ff9d;
+    font-size: 40px;
+    font-weight: 900;
+    color: #ff0000;
     letter-spacing: 6px;
     margin-top: 20px;
+    animation: flicker 1.5s infinite;
 }
 
 .subtitle {
     text-align: center;
-    color: #888;
+    color: #666;
     font-size: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .panel {
-    background: rgba(0,0,0,0.7);
-    border: 1px solid #00ff9d;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 0 20px #00ff9d33;
+    background: rgba(10,10,10,0.9);
+    border: 1px solid #330000;
+    padding: 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 0 20px #ff000022;
 }
 
 .label {
-    color: #00ff9d;
-    font-weight: 700;
+    color: #ff3b3b;
+    font-weight: 800;
 }
 
 .value {
@@ -46,45 +48,56 @@ body {
 }
 
 .warning {
-    color: #ff3b3b;
-    font-weight: 800;
-    letter-spacing: 2px;
+    color: #ff0000;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    45% { opacity: 0.6; }
+    50% { opacity: 0.2; }
+    55% { opacity: 1; }
+    100% { opacity: 0.7; }
 }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("<div class='title'>SYSTEM INTERFACE</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>ACCESSING PERSONAL PROFILE DATABASE</div>", unsafe_allow_html=True)
+st.markdown("<div class='title'>SYSTEM CORRUPTION DETECTED</div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>UNSTABLE MEMORY STRUCTURE / SIGNAL LOSS IN PROGRESS</div>", unsafe_allow_html=True)
 
-mode = st.selectbox("SELECT NODE", ["NODE A", "NODE B", "NODE C", "NODE D"])
+nodes = ["NODE-01", "NODE-02", "NODE-03", "NODE-04"]
+
+choice = st.selectbox("SELECT FRAGMENT", nodes)
+
+def glitch_text():
+    words = [
+        "memory leak detected",
+        "signal fading",
+        "unknown process running",
+        "data corruption spreading",
+        "identity fragmentation",
+        "system heartbeat irregular",
+        "log file overwritten",
+        "trace unverified"
+    ]
+    return random.choice(words)
 
 data = {
-    "NODE A": [
-        {"name": "IDENTITY TRACE", "status": "ACTIVE", "desc": "USER SIGNAL DETECTED IN NETWORK"},
-        {"name": "MEMORY FRAGMENT", "status": "CORRUPTED", "desc": "PARTIAL DATA LOSS DETECTED"},
-        {"name": "LOCATION PING", "status": "UNKNOWN", "desc": "SIGNAL MASKED"}
-    ],
-    "NODE B": [
-        {"name": "BEHAVIOR MODEL", "status": "ANALYZING", "desc": "PATTERN RECOGNITION IN PROGRESS"},
-        {"name": "EMOTION INDEX", "status": "UNSTABLE", "desc": "FLUCTUATION DETECTED"}
-    ],
-    "NODE C": [
-        {"name": "SYSTEM LINK", "status": "ESTABLISHED", "desc": "CONNECTION STABLE"},
-        {"name": "DATA FLOW", "status": "OVERCLOCKED", "desc": "WARNING: HIGH LOAD"}
-    ],
-    "NODE D": [
-        {"name": "CORE FILE", "status": "LOCKED", "desc": "ACCESS DENIED"},
-        {"name": "TRACE LOG", "status": "DELETED", "desc": "NO RECORD FOUND"}
-    ]
+    "NODE-01": ["IDENTITY CORE", "MEMORY SECTOR", "VISUAL FEED"],
+    "NODE-02": ["BEHAVIOR PATTERN", "THOUGHT TRACE", "NEURAL MAP"],
+    "NODE-03": ["SYSTEM LINK", "SIGNAL PATH", "DATA STREAM"],
+    "NODE-04": ["ARCHIVE FILE", "DELETED MEMORY", "UNKNOWN ENTRY"]
 }
 
-st.markdown(f"### {mode}")
+st.markdown("<div class='warning'>WARNING: STABILITY BELOW CRITICAL LEVEL</div>", unsafe_allow_html=True)
 
-st.markdown("<div class='warning'>WARNING: UNAUTHORIZED ACCESS MAY BE LOGGED</div>", unsafe_allow_html=True)
-
-for item in data[mode]:
+for item in data[choice]:
     st.markdown("<div class='panel'>", unsafe_allow_html=True)
-    st.markdown(f"<div class='label'>▶ {item['name']}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='value'>STATUS: {item['status']}</div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='value'>{item['desc']}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='label'>[ {item} ]</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='value'>STATUS: {glitch_text()}</div>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
+
+st.markdown("<div class='warning'>DO NOT TRUST SYSTEM OUTPUT</div>", unsafe_allow_html=True)
