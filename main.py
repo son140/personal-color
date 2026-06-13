@@ -1,15 +1,15 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="Personal Color Beauty Shop",
+    page_title="Personal Color Beauty Store",
     layout="wide"
 )
 
 st.markdown("""
 <style>
 .main-title {
-    font-size: 38px;
-    font-weight: 700;
+    font-size: 40px;
+    font-weight: 800;
     text-align: center;
     margin-bottom: 5px;
 }
@@ -20,21 +20,20 @@ st.markdown("""
 }
 .card {
     background: #fff;
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 15px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 22px rgba(0,0,0,0.08);
     margin-bottom: 20px;
 }
-.product-title {
+.product-name {
     font-size: 16px;
     font-weight: 700;
     margin-top: 10px;
 }
-.color-box {
-    width: 100%;
-    height: 10px;
-    border-radius: 5px;
-    margin-top: 8px;
+.category {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
 }
 .desc {
     font-size: 13px;
@@ -45,20 +44,20 @@ st.markdown("""
 .link {
     display: inline-block;
     margin-top: 10px;
-    font-weight: 600;
+    font-weight: 700;
     color: #c40000;
     text-decoration: none;
 }
 .section-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin: 20px 0;
+    font-size: 24px;
+    font-weight: 800;
+    margin: 25px 0 15px 0;
 }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("<div class='main-title'>Personal Color Beauty Shop</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'>퍼스널컬러에 맞는 립 틴트 & 색상 추천</div>", unsafe_allow_html=True)
+st.markdown("<div class='main-title'>Personal Color Beauty Store</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-title'>퍼스널컬러 기반 립 / 블러셔 / 하이라이터 추천</div>", unsafe_allow_html=True)
 
 color = st.selectbox(
     "퍼스널컬러 선택",
@@ -70,46 +69,46 @@ base_url = "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo="
 products = {
     "봄 웜톤": [
         {
-            "name": "롬앤 쥬시래스팅 틴트 07 쿨피치",
-            "color": "#ffb6a3",
+            "name": "롬앤 쥬시래스팅 틴트 코랄",
+            "type": "립",
+            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
             "goodsNo": "A000000246445",
-            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "밝은 피치 코랄 컬러로 피부를 화사하게 밝혀주는 대표 봄 웜톤 틴트입니다."
+            "desc": "밝은 코랄 컬러로 얼굴을 화사하게 밝혀주는 대표 봄 웜톤 립"
         },
         {
-            "name": "페리페라 잉크 더 에어리 벨벳 02",
-            "color": "#ff9b9b",
+            "name": "페리페라 코랄 블러셔",
+            "type": "블러셔",
+            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
             "goodsNo": "A000000246446",
-            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "가벼운 핑크 코랄 느낌으로 생기 있는 얼굴 표현 가능"
+            "desc": "생기 있는 코랄 컬러로 자연스러운 혈색 연출"
         },
         {
-            "name": "에뛰드 픽싱 틴트 코랄",
-            "color": "#ff7f66",
+            "name": "하이라이터 샴페인 골드",
+            "type": "하이라이터",
+            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
             "goodsNo": "A000000246447",
-            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "따뜻한 코랄 오렌지로 생기와 혈색 강화"
+            "desc": "따뜻한 골드빛으로 피부 윤기 강조"
         },
         {
-            "name": "롬앤 글래스팅 워터 틴트",
-            "color": "#ff8f7a",
+            "name": "에뛰드 살구 틴트",
+            "type": "립",
+            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
             "goodsNo": "A000000246448",
-            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "촉촉한 광택감 + 코랄 조합"
+            "desc": "살구빛 MLBB 느낌으로 자연스러운 립"
         },
         {
-            "name": "클리오 매드매트 립",
-            "color": "#ff6f61",
+            "name": "베이스 쿠션 라이트 베이지",
+            "type": "베이스",
+            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
             "goodsNo": "A000000246449",
-            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "선명한 오렌지 레드 계열"
+            "desc": "밝고 투명한 피부 표현"
         },
         {
-            "name": "롬앤 누디피치 틴트",
-            "color": "#ffd1b3",
-            "goodsNo": "A000000246450",
+            "name": "롬앤 피치 글로우 블러셔",
+            "type": "블러셔",
             "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "자연스러운 누디 피치 컬러"
+            "goodsNo": "A000000246450",
+            "desc": "피치빛 광채 블러셔로 생기 강화"
         }
     ]
 }
@@ -124,11 +123,8 @@ for i, p in enumerate(products[color]):
 
         st.image(p["img"], use_container_width=True)
 
-        st.markdown(f"<div class='product-title'>{p['name']}</div>", unsafe_allow_html=True)
-
-        st.markdown(f"""
-        <div class='color-box' style='background:{p['color']}'></div>
-        """, unsafe_allow_html=True)
+        st.markdown(f"<div class='product-name'>{p['name']}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='category'>{p['type']}</div>", unsafe_allow_html=True)
 
         st.markdown(f"<div class='desc'>{p['desc']}</div>", unsafe_allow_html=True)
 
