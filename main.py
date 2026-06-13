@@ -1,7 +1,4 @@
 import streamlit as st
-import requests
-from PIL import Image
-from io import BytesIO
 
 st.set_page_config(page_title="Personal Color Beauty Store", layout="wide")
 
@@ -18,45 +15,39 @@ body {
     font-weight: 800;
     color: #ff4d88;
     margin-bottom: 5px;
+    letter-spacing: 1px;
 }
 
 .subtitle {
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
     color: #777;
     margin-bottom: 30px;
 }
 
 .card {
-    background: rgba(255,255,255,0.9);
-    border-radius: 18px;
-    padding: 15px;
-    box-shadow: 0 6px 25px rgba(255, 105, 180, 0.12);
-    margin-bottom: 20px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
     transition: 0.2s;
 }
 
 .card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
 }
 
 .name {
     font-size: 16px;
     font-weight: 700;
     color: #222;
-    margin-top: 8px;
-}
-
-.type {
-    font-size: 13px;
-    color: #ff4d88;
-    font-weight: 600;
 }
 
 .meta {
-    font-size: 12px;
+    font-size: 13px;
     color: #666;
-    margin-top: 3px;
+    margin-top: 4px;
 }
 
 .price {
@@ -70,7 +61,7 @@ body {
     font-size: 13px;
     color: #555;
     margin-top: 6px;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .link {
@@ -81,14 +72,14 @@ body {
     background: #ff4d88;
     color: white;
     text-decoration: none;
-    font-weight: 600;
     font-size: 13px;
+    font-weight: 600;
 }
 </style>
 """, unsafe_allow_html=True)
 
 st.markdown("<div class='title'>Personal Color Beauty Store</div>", unsafe_allow_html=True)
-st.markdown("<div class='subtitle'>Discover your perfect tones · curated makeup for your vibe</div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitle'>Curated beauty recommendations based on your tone</div>", unsafe_allow_html=True)
 
 color = st.selectbox(
     "Select your personal color type",
@@ -97,17 +88,6 @@ color = st.selectbox(
 
 base_url = "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo="
 
-
-@st.cache_data
-def load_image(url):
-    headers = {"User-Agent": "Mozilla/5.0"}
-    try:
-        r = requests.get(url, headers=headers, timeout=5)
-        return Image.open(BytesIO(r.content))
-    except:
-        return None
-
-
 products = {
     "Spring Warm Tone": [
         {
@@ -115,27 +95,24 @@ products = {
             "type": "Lip",
             "color": "Coral Peach",
             "price": "12,000 KRW",
-            "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/item/2025/11/5248565926099038124.jpg",
-            "goodsNo": "A000000246445",
-            "desc": "Bright coral shade that brings natural glow."
+            "desc": "Bright coral tone that enhances natural vitality.",
+            "goodsNo": "A000000246445"
         },
         {
             "name": "Peripera Blush",
             "type": "Blush",
             "color": "Soft Peach",
             "price": "9,000 KRW",
-            "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/item/2025/11/5248565926099038124.jpg",
-            "goodsNo": "A000000246446",
-            "desc": "Fresh and healthy-looking cheeks."
+            "desc": "Natural flush for daily freshness.",
+            "goodsNo": "A000000246446"
         },
         {
             "name": "Etude Highlighter",
             "type": "Highlighter",
             "color": "Champagne Gold",
             "price": "11,000 KRW",
-            "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/item/2025/11/5248565926099038124.jpg",
-            "goodsNo": "A000000246447",
-            "desc": "Soft glow with elegant shine."
+            "desc": "Soft glow for radiant skin.",
+            "goodsNo": "A000000246447"
         }
     ],
 
@@ -145,18 +122,16 @@ products = {
             "type": "Lip",
             "color": "Lavender Pink",
             "price": "12,000 KRW",
-            "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/item/2025/11/5248565926099038124.jpg",
-            "goodsNo": "A000000246448",
-            "desc": "Cool muted tone for daily look."
+            "desc": "Muted cool tone for calm elegance.",
+            "goodsNo": "A000000246448"
         },
         {
             "name": "Laneige Blush",
             "type": "Blush",
             "color": "Cool Pink",
             "price": "18,000 KRW",
-            "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/item/2025/11/5248565926099038124.jpg",
-            "goodsNo": "A000000246449",
-            "desc": "Light and refreshing color mood."
+            "desc": "Light airy pink mood.",
+            "goodsNo": "A000000246449"
         }
     ],
 
@@ -166,9 +141,8 @@ products = {
             "type": "Lip",
             "color": "Brick Red",
             "price": "13,000 KRW",
-            "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/item/2025/11/5248565926099038124.jpg",
-            "goodsNo": "A000000246450",
-            "desc": "Deep and warm autumn vibe."
+            "desc": "Deep warm autumn mood.",
+            "goodsNo": "A000000246450"
         }
     ],
 
@@ -178,36 +152,26 @@ products = {
             "type": "Lip",
             "color": "Deep Cherry",
             "price": "14,000 KRW",
-            "img": "https://image.oliveyoung.co.kr/cfimages/cf-goods/uploads/images/item/2025/11/5248565926099038124.jpg",
-            "goodsNo": "A000000246451",
-            "desc": "Bold and powerful statement color."
+            "desc": "Bold high-contrast statement color.",
+            "goodsNo": "A000000246451"
         }
     ]
 }
 
 st.markdown(f"## {color} Recommendations")
 
-cols = st.columns(3)
+for p in products[color]:
+    st.markdown("<div class='card'>", unsafe_allow_html=True)
 
-for i, p in enumerate(products[color]):
-    with cols[i % 3]:
-        st.markdown("<div class='card'>", unsafe_allow_html=True)
+    st.markdown(f"<div class='name'>{p['name']}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='meta'>{p['type']} · {p['color']}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='price'>{p['price']}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='desc'>{p['desc']}</div>", unsafe_allow_html=True)
 
-        img = load_image(p["img"])
-        if img:
-            st.image(img, use_container_width=True)
-        else:
-            st.image(p["img"], use_container_width=True)
+    st.markdown(f"""
+    <a class='link' href='{base_url + p['goodsNo']}' target='_blank'>
+    View Product
+    </a>
+    """, unsafe_allow_html=True)
 
-        st.markdown(f"<div class='name'>{p['name']}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='type'>{p['type']} · {p['color']}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='price'>{p['price']}</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='desc'>{p['desc']}</div>", unsafe_allow_html=True)
-
-        st.markdown(f"""
-        <a class='link' href='{base_url + p['goodsNo']}' target='_blank'>
-        View on Olive Young
-        </a>
-        """, unsafe_allow_html=True)
-
-        st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
