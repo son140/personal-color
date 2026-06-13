@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="퍼스널컬러 뷰티 추천",
+    page_title="Personal Color Beauty Shop",
     layout="wide"
 )
 
@@ -19,19 +19,25 @@ st.markdown("""
     margin-bottom: 30px;
 }
 .card {
-    background-color: white;
+    background: #fff;
     border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    padding: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     margin-bottom: 20px;
 }
-.product-name {
-    font-size: 18px;
-    font-weight: 600;
+.product-title {
+    font-size: 16px;
+    font-weight: 700;
     margin-top: 10px;
 }
+.color-box {
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 8px;
+}
 .desc {
-    font-size: 14px;
+    font-size: 13px;
     color: #444;
     margin-top: 8px;
     line-height: 1.5;
@@ -39,76 +45,90 @@ st.markdown("""
 .link {
     display: inline-block;
     margin-top: 10px;
-    color: #d60000;
     font-weight: 600;
+    color: #c40000;
     text-decoration: none;
 }
 .section-title {
     font-size: 22px;
     font-weight: 700;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin: 20px 0;
 }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("<div class='main-title'>Personal Color Beauty Finder</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-title'>퍼스널컬러에 맞는 립 틴트 추천 서비스</div>", unsafe_allow_html=True)
+st.markdown("<div class='main-title'>Personal Color Beauty Shop</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-title'>퍼스널컬러에 맞는 립 틴트 & 색상 추천</div>", unsafe_allow_html=True)
 
 color = st.selectbox(
-    "퍼스널컬러를 선택하세요",
+    "퍼스널컬러 선택",
     ["봄 웜톤", "여름 쿨톤", "가을 웜톤", "겨울 쿨톤"]
 )
 
-# 올리브영 검색 기본 링크 (네가 준 구조)
 base_url = "https://www.oliveyoung.co.kr/store/goods/getGoodsDetail.do?goodsNo="
 
 products = {
     "봄 웜톤": [
         {
-            "name": "롬앤 쥬시래스팅 틴트 코랄 계열",
+            "name": "롬앤 쥬시래스팅 틴트 07 쿨피치",
+            "color": "#ffb6a3",
             "goodsNo": "A000000246445",
             "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "봄 웜톤은 밝고 따뜻한 색감이 핵심입니다. 코랄, 피치 계열은 얼굴을 화사하게 만들어주고 혈색을 자연스럽게 살려줍니다."
-        }
-    ],
-    "여름 쿨톤": [
+            "desc": "밝은 피치 코랄 컬러로 피부를 화사하게 밝혀주는 대표 봄 웜톤 틴트입니다."
+        },
         {
-            "name": "롬앤 로즈핑크 쥬시 틴트",
+            "name": "페리페라 잉크 더 에어리 벨벳 02",
+            "color": "#ff9b9b",
             "goodsNo": "A000000246446",
             "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "여름 쿨톤은 채도가 낮고 부드러운 핑크/로즈 계열이 잘 어울립니다. 피부 톤을 깨끗하고 차분하게 정리해줍니다."
-        }
-    ],
-    "가을 웜톤": [
+            "desc": "가벼운 핑크 코랄 느낌으로 생기 있는 얼굴 표현 가능"
+        },
         {
-            "name": "브릭 레드 틴트",
+            "name": "에뛰드 픽싱 틴트 코랄",
+            "color": "#ff7f66",
             "goodsNo": "A000000246447",
             "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "가을 웜톤은 브릭, 테라코타, 누디 브라운 계열이 핵심입니다. 깊고 분위기 있는 인상을 만들어줍니다."
-        }
-    ],
-    "겨울 쿨톤": [
+            "desc": "따뜻한 코랄 오렌지로 생기와 혈색 강화"
+        },
         {
-            "name": "체리 레드 쥬시 틴트",
+            "name": "롬앤 글래스팅 워터 틴트",
+            "color": "#ff8f7a",
             "goodsNo": "A000000246448",
             "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
-            "desc": "겨울 쿨톤은 고채도 레드, 체리, 플럼 컬러가 가장 잘 어울립니다. 얼굴 대비를 살려 또렷한 인상을 만들어줍니다."
+            "desc": "촉촉한 광택감 + 코랄 조합"
+        },
+        {
+            "name": "클리오 매드매트 립",
+            "color": "#ff6f61",
+            "goodsNo": "A000000246449",
+            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
+            "desc": "선명한 오렌지 레드 계열"
+        },
+        {
+            "name": "롬앤 누디피치 틴트",
+            "color": "#ffd1b3",
+            "goodsNo": "A000000246450",
+            "img": "https://image.oliveyoung.co.kr/uploads/images/goods/large/10/0000/0024/A00000024644501ko.jpg",
+            "desc": "자연스러운 누디 피치 컬러"
         }
     ]
 }
 
 st.markdown(f"<div class='section-title'>{color} 추천 제품</div>", unsafe_allow_html=True)
 
-cols = st.columns(2)
+cols = st.columns(3)
 
 for i, p in enumerate(products[color]):
-    with cols[i % 2]:
+    with cols[i % 3]:
         st.markdown("<div class='card'>", unsafe_allow_html=True)
 
         st.image(p["img"], use_container_width=True)
 
-        st.markdown(f"<div class='product-name'>{p['name']}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='product-title'>{p['name']}</div>", unsafe_allow_html=True)
+
+        st.markdown(f"""
+        <div class='color-box' style='background:{p['color']}'></div>
+        """, unsafe_allow_html=True)
 
         st.markdown(f"<div class='desc'>{p['desc']}</div>", unsafe_allow_html=True)
 
